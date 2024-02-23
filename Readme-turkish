@@ -1,0 +1,22 @@
+White, finn ve rework için küçük bir koşullu önemli boşluk işleyicisidir. Verilen bir dosyanın önemli boşluk için zaten işlenip işlenmediğini görmek için gerçekten temel bir kontrol yapar.
+
+Kurulum
+Modül npm'de yayınlandı ve şu şekilde yüklenir:
+
+npm install --save white
+Testlerimizde kullandığımız işleme motoru olarak finn'i kullanmanız önerilir.
+
+Kullanım
+White, finn için bir eklenti olduğundan, önce bir finn örneği kurmamız gerekiyor. Zaten gereken ve kurulu olduğunu varsayıyorum:
+
+'use strict';
+
+var finn = require('finn')()
+  , whitespace = require('white');
+Şimdi bir finn örneğimiz olduğuna göre, white'ı ön işlem olarak atayabiliriz:
+
+finn.pre.use(whitespace);
+@import ifadelerini işleyen modülleri kullanıyorsanız, bu dosyaları ön işlemek isteyebilirsiniz, genellikle yönünü dönüştürme yöntemi olarak doğrudan white işlevini sağlayabilirsiniz:
+
+finn.use('import', require('rework-import')({ transform: whitespace }));
+Ve işte bu modül hakkında bilmeniz gereken her şey!
